@@ -18,7 +18,7 @@ public class UsuarioController : ControllerBase
     [HttpPost]
     public IActionResult CadastraUsuario([FromBody] Usuario usuario)
     {
-        _context.Usuarios.Add(usuario);
+        _context.Usuario.Add(usuario);
         _context.SaveChanges();
 		return Ok("Cadastro realizado com sucesso!");
 	}

@@ -7,7 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("AgendaConnecti
 
 builder.Services.AddDbContext<ServicoContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDbContext<UsuarioContext>(options => options.UseSqlServer(connectionString));
-
+builder.Services.AddDbContext<AgendaContext>(options => options.UseSqlServer(connectionString));
 // Add services to the container.
 
 builder.Services.AddControllers();

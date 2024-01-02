@@ -10,5 +10,5 @@ public class ServicoContext : DbContext
         
     }
 
-    public DbSet<Servico> Servicos { get; set; }
+    public DbSet<Servico> Servico { get; set; }
 }

@@ -6,10 +6,6 @@
         public string Nome { get; set; }
         public Permissao Permissao { get; set; }
 
-        public PermissaoUsuario(Permissao permissao)
-        {
-            Permissao = permissao;
-        }
 
     }
 }

@@ -10,6 +10,6 @@ namespace Agendamentos.Data
 
 		}
 
-		public DbSet<Usuario> Usuarios { get; set; }
+		public DbSet<Usuario> Usuario { get; set; }
 	}
 }
