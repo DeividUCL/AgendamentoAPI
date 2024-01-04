@@ -4,30 +4,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamentos.Controllers
 {
-	[Controller]
+	[ApiController]
 	[Route("[controller]")]
 	public class ServicoController : ControllerBase
 	{
-		private ServicoContext _context;
-        public ServicoController(ServicoContext context)
-        {
-			_context = context;
-        }
+		private AgendamentoContext db;
+
+
+		public ServicoController(AgendamentoContext db)
+		{
+			this.db = db;
+
+		}
 
 		[HttpPost]
-		public IActionResult CadastrarServico([FromBody] Servico servico) 
+		public IActionResult Agenda([FromBody] Servico servico)
 		{
-			_context.Servico.Add(servico);
-			_context.SaveChanges();
-			return Ok("Serviço cadastrado com sucesso");
-        }
 
-		[HttpGet("{id}")]
-		public ActionResult Get(int id)
-		{
-			var servico = _context.Servico.FirstOrDefault(servico => servico.Id == id);
-			if (servico == null) return NotFound();
-			return Ok(servico);
+			db.Servico.Add(servico);
+			db.SaveChanges();
+			return Ok();
 		}
 	}
 }

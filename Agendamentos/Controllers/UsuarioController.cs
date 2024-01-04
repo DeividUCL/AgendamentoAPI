@@ -2,24 +2,28 @@
 using Agendamentos.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Agendamentos.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class UsuarioController : ControllerBase
+namespace Agendamentos.Controllers
 {
-	private UsuarioContext _context;
+	[ApiController]
+	[Route("[controller]")]
+	public class UsuarioController : ControllerBase
+	{
+		private AgendamentoContext db;
 
-    public UsuarioController(UsuarioContext context)
-    {
-        _context = context;
-    }
 
-    [HttpPost]
-    public IActionResult CadastraUsuario([FromBody] Usuario usuario)
-    {
-        _context.Usuario.Add(usuario);
-        _context.SaveChanges();
-		return Ok("Cadastro realizado com sucesso!");
+		public UsuarioController(AgendamentoContext db)
+		{
+			this.db = db;
+
+		}
+
+		[HttpPost]
+		public IActionResult CadastraUsuario([FromBody] Usuario usuario)
+		{
+
+			db.Usuario.Add(usuario);
+			db.SaveChanges();
+			return Ok();
+		}
 	}
 }

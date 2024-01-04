@@ -4,10 +4,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("AgendaConnection");
-
-builder.Services.AddDbContext<ServicoContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddDbContext<UsuarioContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddDbContext<AgendaContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AgendamentoContext>(options => options.UseSqlServer(connectionString));
 // Add services to the container.
 
 builder.Services.AddControllers();

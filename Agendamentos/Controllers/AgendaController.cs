@@ -1,5 +1,6 @@
 ﻿using Agendamentos.Classes;
 using Agendamentos.Data;
+using Agendamentos.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,32 +10,32 @@ namespace Agendamentos.Controllers
 	[Route("[controller]")]
 	public class AgendaController : ControllerBase
 	{
-		private AgendaContext _context;
-		private UsuarioContext _usuarioContext;
-		private ServicoContext _servicoContext;
+		private AgendamentoContext db;
+		
 
-		public AgendaController(AgendaContext context, UsuarioContext usuarioContext, ServicoContext servicoContext)
+		public AgendaController(AgendamentoContext db)
 		{
-			_context = context;
-			_servicoContext = servicoContext;
-			_usuarioContext = usuarioContext;
+			this.db = db;
 
 		}
 
 		[HttpPost]
-		public IActionResult Agenda([FromBody] Agenda agenda) {
-
-			agenda.Usuario = _usuarioContext.Usuario.FirstOrDefault(a => a.Id == agenda.UsuarioId);
-			agenda.Servico = _servicoContext.Servico.FirstOrDefault(a => a.Id == agenda.ServicoId);
-
-			if (agenda.Usuario == null || agenda.Servico == null)
+		public IActionResult Agendar([FromBody] DtoAgenda dtoAgenda) {
+			if(ModelState.IsValid)
 			{
-				return BadRequest("Usuario ou Servico não encontrado");
+				var agenda = new Agenda
+				{
+					Data = dtoAgenda.Data,
+					Hora = dtoAgenda.Hora,
+					UsuarioId = dtoAgenda.UsuarioId,
+					ConvidadoId = dtoAgenda.ConvidadoId,
+					ServicoId = dtoAgenda.ServicoId,
+				};
+				db.Agenda.Add(agenda);
+				db.SaveChanges();
+				return Ok();
 			}
-
-			_context.Agenda.Add(agenda);
-			_context.SaveChanges();
-            return Ok();
+			return BadRequest("Dados inválidos");
         }
 	}
 }

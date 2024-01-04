@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Agendamentos.Migrations.Agenda
+namespace Agendamentos.Migrations
 {
     /// <inheritdoc />
     public partial class TabelaAgenda : Migration
@@ -33,7 +33,7 @@ namespace Agendamentos.Migrations.Agenda
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Duracao = table.Column<int>(type: "int", nullable: false)
                 },
@@ -48,12 +48,12 @@ namespace Agendamentos.Migrations.Agenda
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -69,8 +69,8 @@ namespace Agendamentos.Migrations.Agenda
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Hora = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: true),
-                    ConvidadoId = table.Column<int>(type: "int", nullable: true),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    ConvidadoId = table.Column<int>(type: "int", nullable: false),
                     ServicoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -80,7 +80,8 @@ namespace Agendamentos.Migrations.Agenda
                         name: "FK_Agenda_Convidado_ConvidadoId",
                         column: x => x.ConvidadoId,
                         principalTable: "Convidado",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Agenda_Servico_ServicoId",
                         column: x => x.ServicoId,
@@ -91,7 +92,8 @@ namespace Agendamentos.Migrations.Agenda
                         name: "FK_Agenda_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

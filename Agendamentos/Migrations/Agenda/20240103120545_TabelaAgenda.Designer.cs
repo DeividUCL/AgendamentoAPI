@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Agendamentos.Migrations.Agenda
+namespace Agendamentos.Migrations
 {
-    [DbContext(typeof(AgendaContext))]
-    [Migration("20231230131038_TabelaAgenda")]
+    [DbContext(typeof(AgendamentoContext))]
+    [Migration("20240103120545_TabelaAgenda")]
     partial class TabelaAgenda
     {
         /// <inheritdoc />
@@ -33,7 +33,7 @@ namespace Agendamentos.Migrations.Agenda
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ConvidadoId")
+                    b.Property<int>("ConvidadoId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Data")
@@ -45,7 +45,7 @@ namespace Agendamentos.Migrations.Agenda
                     b.Property<int>("ServicoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsuarioId")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -68,7 +68,6 @@ namespace Agendamentos.Migrations.Agenda
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Duracao")
@@ -98,27 +97,21 @@ namespace Agendamentos.Migrations.Agenda
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tipo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -153,7 +146,9 @@ namespace Agendamentos.Migrations.Agenda
                 {
                     b.HasOne("Agendamentos.Models.Convidado", "Convidado")
                         .WithMany()
-                        .HasForeignKey("ConvidadoId");
+                        .HasForeignKey("ConvidadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Agendamentos.Classes.Servico", "Servico")
                         .WithMany()
@@ -163,7 +158,9 @@ namespace Agendamentos.Migrations.Agenda
 
                     b.HasOne("Agendamentos.Classes.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Convidado");
 
