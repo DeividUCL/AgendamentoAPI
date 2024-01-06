@@ -1,4 +1,4 @@
-﻿using Agendamentos.Classes;
+﻿using Agendamentos.Contexts;
 using Agendamentos.Data;
 using Microsoft.AspNetCore.Mvc;
 

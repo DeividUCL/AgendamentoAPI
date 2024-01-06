@@ -1,4 +1,4 @@
-using Agendamentos.Data;
+using Agendamentos.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

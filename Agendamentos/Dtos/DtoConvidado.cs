@@ -1,5 +1,4 @@
 ﻿namespace Agendamentos.Dtos;
-
 public class DtoConvidado
 {
 	public int Id { get; set; }

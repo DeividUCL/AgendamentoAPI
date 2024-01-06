@@ -1,8 +1,8 @@
-﻿namespace Agendamentos.Classes
+﻿namespace Agendamentos.Data;
+
+public class Permissao
 {
-	public class Permissao
-	{
-        public int Id { get; set; }
-        public string Nome { get; set; }
-    }
+	public int Id { get; set; }
+	public string Nome { get; set; }
 }
+

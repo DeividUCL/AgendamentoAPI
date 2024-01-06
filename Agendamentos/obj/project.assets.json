@@ -3349,11 +3349,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\d.ferreira\\Desktop\\AgendamentoAPI\\Agendamentos\\Agendamentos.csproj",
+      "projectUniqueName": "C:\\Users\\d.ferreira\\Desktop\\Projetos\\AgendamentoAPI\\Agendamentos\\Agendamentos.csproj",
       "projectName": "Agendamentos",
-      "projectPath": "C:\\Users\\d.ferreira\\Desktop\\AgendamentoAPI\\Agendamentos\\Agendamentos.csproj",
+      "projectPath": "C:\\Users\\d.ferreira\\Desktop\\Projetos\\AgendamentoAPI\\Agendamentos\\Agendamentos.csproj",
       "packagesPath": "C:\\Users\\d.ferreira\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\d.ferreira\\Desktop\\AgendamentoAPI\\Agendamentos\\obj\\",
+      "outputPath": "C:\\Users\\d.ferreira\\Desktop\\Projetos\\AgendamentoAPI\\Agendamentos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

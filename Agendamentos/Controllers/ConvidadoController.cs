@@ -1,6 +1,5 @@
-﻿using Agendamentos.Classes;
+﻿using Agendamentos.Contexts;
 using Agendamentos.Data;
-using Agendamentos.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamentos.Controllers;

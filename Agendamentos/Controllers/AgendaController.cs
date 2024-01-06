@@ -1,8 +1,6 @@
-﻿using Agendamentos.Classes;
-using Agendamentos.Data;
+﻿using Agendamentos.Contexts;
 using Agendamentos.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Agendamentos.Controllers
 {
@@ -21,21 +19,22 @@ namespace Agendamentos.Controllers
 
 		[HttpPost]
 		public IActionResult Agendar([FromBody] DtoAgenda dtoAgenda) {
-			if(ModelState.IsValid)
+			if(!ModelState.IsValid)
 			{
-				var agenda = new Agenda
-				{
-					Data = dtoAgenda.Data,
-					Hora = dtoAgenda.Hora,
-					UsuarioId = dtoAgenda.UsuarioId,
-					ConvidadoId = dtoAgenda.ConvidadoId,
-					ServicoId = dtoAgenda.ServicoId,
-				};
-				db.Agenda.Add(agenda);
-				db.SaveChanges();
-				return Ok();
+				return BadRequest("Dados inválidos");
 			}
-			return BadRequest("Dados inválidos");
-        }
+
+			var agenda = new Agenda
+			{
+				Data = dtoAgenda.Data,
+				Hora = dtoAgenda.Hora,
+				UsuarioId = dtoAgenda.UsuarioId,
+				ConvidadoId = dtoAgenda.ConvidadoId,
+				ServicoId = dtoAgenda.ServicoId,
+			};
+			db.Agenda.Add(agenda);
+			db.SaveChanges();
+			return Ok("Agendamento realizado com sucesso!");
+		}
 	}
 }

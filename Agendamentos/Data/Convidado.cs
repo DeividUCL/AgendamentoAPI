@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace Agendamentos.Models;
+namespace Agendamentos.Data;
 
-public class Convidado
+[DataContract]
+public partial class Convidado
 {
     [DataMember]
     public int Id { get; set; }

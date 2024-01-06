@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZLNHAL0MGeJHxhtBADo7oIW/O7G5F89zU/gAvy0fijnjzyh5h7jNN2ehFiomha7jJJ34Ie7mJuOa30IVbutHMQ==",
+  "dgSpecHash": "29TGN23Et3eKguoWXvEIsvb5eEZyJICemWfROGSiGdw1JBUxltVVpWuyuLDaIdJT0QYqPgbccSu3bG33fq9f2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\d.ferreira\\Desktop\\AgendamentoAPI\\Agendamentos\\Agendamentos.csproj",
+  "projectFilePath": "C:\\Users\\d.ferreira\\Desktop\\Projetos\\AgendamentoAPI\\Agendamentos\\Agendamentos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\d.ferreira\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\d.ferreira\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
