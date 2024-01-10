@@ -1,5 +1,6 @@
 ﻿using Agendamentos.Contexts;
 using Agendamentos.Data;
+using Agendamentos.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamentos.Controllers
@@ -10,11 +11,9 @@ namespace Agendamentos.Controllers
 	{
 		private AgendamentoContext db;
 
-
 		public UsuarioController(AgendamentoContext db)
 		{
 			this.db = db;
-
 		}
 
 		[HttpPost]
