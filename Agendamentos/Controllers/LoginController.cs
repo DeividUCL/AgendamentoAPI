@@ -1,5 +1,4 @@
 ﻿using Agendamentos.Contexts;
-using Agendamentos.Data;
 using Agendamentos.Dtos;
 using Agendamentos.Servicos;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +18,7 @@ public class LoginController : ControllerBase
     [HttpPost]
 	[Route("login")]
 	[AllowAnonymous]
-	public async Task<ActionResult<dynamic>> Autenticacao([FromBody] DtoUsuario usuario)
+	public async Task<ActionResult<dynamic>> Autenticacao([FromBody] DtoLogin usuario)
 	{
 		var user = db.Usuario.FirstOrDefault(u => u.Username == usuario.Username && u.Senha == usuario.Senha);
 

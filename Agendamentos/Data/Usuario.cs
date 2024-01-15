@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Agendamentos.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace Agendamentos.Data;
@@ -13,7 +14,7 @@ public partial class Usuario
 	[DataMember]
 	public string Senha { get; set; }
 	[DataMember]
-	public string Tipo { get; set; }
+	public TTipoUsuario Tipo { get; set; }
 	[DataMember]
 	public string Nome { get; set; }
 	[DataMember]

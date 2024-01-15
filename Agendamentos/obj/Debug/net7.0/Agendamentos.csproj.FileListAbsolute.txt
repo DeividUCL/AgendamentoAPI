@@ -227,3 +227,4 @@ C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\obj\Debug\net7.
 C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\obj\Debug\net7.0\Agendamentos.genruntimeconfig.cache
 C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\obj\Debug\net7.0\ref\Agendamentos.dll
 C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\bin\Debug\net7.0\Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration.dll

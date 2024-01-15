@@ -1,4 +1,5 @@
 ﻿using Agendamentos.Data;
+using Agendamentos.Dtos;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,7 +9,7 @@ namespace Agendamentos.Servicos;
 
 public static class TokenService
 {
-    public static string GerarToken(Usuario usuario)
+    public static string GerarToken(DtoLogin usuario)
     {
         var tokenManipulador = new JwtSecurityTokenHandler();
         var chave = Encoding.ASCII.GetBytes(Settings.ChaveSecreta);
@@ -31,4 +32,8 @@ public static class TokenService
         return tokenManipulador.WriteToken(token);
     }
 
+	internal static object GerarToken(Usuario user)
+	{
+		throw new NotImplementedException();
+	}
 }

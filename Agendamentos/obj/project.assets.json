@@ -46,6 +46,22 @@
           }
         }
       },
+      "Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1603,6 +1619,19 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration/3.0.0": {
+      "sha512": "FT1T75ElgTcREHAguQTTY4tCLvveI1kMQkRQyFqbE9DCuwQAgUH02zRZ5ofu84hNQl/JSxh5SfSGl9wJODceqQ==",
+      "type": "package",
+      "path": "be.vlaanderen.basisregisters.entityframeworkcore.entitytypeconfiguration/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "be.vlaanderen.basisregisters.entityframeworkcore.entitytypeconfiguration.3.0.0.nupkg.sha512",
+        "be.vlaanderen.basisregisters.entityframeworkcore.entitytypeconfiguration.nuspec",
+        "lib/net6.0/Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration.dll",
+        "lib/net6.0/Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration.pdb"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -4125,6 +4154,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration >= 3.0.0",
       "Microsoft.AspNetCore.Authentication >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.15",
       "Microsoft.AspNetCore.OpenApi >= 7.0.10",
@@ -4178,6 +4208,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
           "Microsoft.AspNetCore.Authentication": {
             "target": "Package",
             "version": "[2.2.0, )"
