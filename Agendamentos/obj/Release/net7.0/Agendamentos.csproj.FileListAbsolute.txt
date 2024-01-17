@@ -76,3 +76,5 @@ C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\obj\Release\net
 C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\obj\Release\net7.0\Agendamentos.pdb
 C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\obj\Release\net7.0\Agendamentos.genruntimeconfig.cache
 C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\obj\Release\net7.0\ref\Agendamentos.dll
+C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\bin\Release\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\d.ferreira\Desktop\Projetos\AgendamentoAPI\Agendamentos\bin\Release\net7.0\Newtonsoft.Json.dll

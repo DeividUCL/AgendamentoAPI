@@ -15,6 +15,7 @@ public class DtoUsuario
 	[Required(ErrorMessage = "O campo 'Senha' é obrigatório")]
 	public string Senha { get; set; }
 	[Required(ErrorMessage = "O campo 'Tipo' é obrigatório")]
+	[Range(1,4, ErrorMessage = "Tipo de usuário não existe na nossa base de dados")]
 	public TTipoUsuario Tipo { get; set; }
 	[Required(ErrorMessage = "O campo 'Nome' é obrigatório")]
 	public string Nome { get; set; }
@@ -26,7 +27,7 @@ public class DtoUsuario
 	[Required]
 	public DateTime DataNascimento { get; set; }
 
-    public Usuario ToModel(AgendamentoContext db)
+	public Usuario ToModel(AgendamentoContext db)
 	{
 		var user = db.Usuario.Find(this.Id);
 

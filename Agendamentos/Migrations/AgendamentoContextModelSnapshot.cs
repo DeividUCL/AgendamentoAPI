@@ -133,9 +133,8 @@ namespace Agendamentos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .IsRequired()

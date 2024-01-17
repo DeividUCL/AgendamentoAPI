@@ -5,11 +5,11 @@ namespace Agendamentos.Enums;
 public enum TTipoUsuario
 {
 	[Description("Gestor")]
-	Gestor = 'G',
+	Gestor = 1,
 	[Description("Cliente")]
-	Cliente = 'C',
+	Cliente = 2,
 	[Description("Funcionario")]
-	Funcionario = 'F',
+	Funcionario = 3,
 	[Description("Convidado")]
-	Convidado = 'I'
+	Convidado = 4
 }
