@@ -1,5 +1,5 @@
 ﻿using Agendamentos.Contexts;
-using Agendamentos.Data;
+using Agendamentos.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamentos.Controllers
@@ -18,8 +18,9 @@ namespace Agendamentos.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Agenda([FromBody] Servico servico)
+		public IActionResult Cadastrar([FromBody] DtoServico service)
 		{
+			var servico = service.ToModel(db);
 
 			db.Servico.Add(servico);
 			db.SaveChanges();

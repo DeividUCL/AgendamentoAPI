@@ -10,7 +10,6 @@ namespace Agendamentos.Controllers
 	public class AgendaController : ControllerBase
 	{
 		private AgendamentoContext db;
-		
 
 		public AgendaController(AgendamentoContext db)
 		{
@@ -20,59 +19,60 @@ namespace Agendamentos.Controllers
 
 
 		[HttpPost]
-		public IActionResult Agendar([FromBody] DtoAgenda dtoAgenda) 
+		public IActionResult Agendar([FromBody] DtoAgenda a) 
 		{
-			if(!ModelState.IsValid)
+			var agenda = a.ToModel(db);
+			if (!ModelState.IsValid)
 			{
 				return BadRequest("Dados inválidos");
 			}
+			bool existeAgenda = db.Agenda.Any(e =>
+			e.Data == a.Data &&
+			e.Data.TimeOfDay == a.Data.TimeOfDay);
 
-			var agenda = new Agenda
+			if (existeAgenda)
 			{
-				Data = dtoAgenda.Data,
-				Hora = dtoAgenda.Hora,
-				UsuarioId = dtoAgenda.UsuarioId,
-				ConvidadoId = dtoAgenda.ConvidadoId,
-				ServicoId = dtoAgenda.ServicoId,
-			};
+				return BadRequest("O Horário já está agendado");
+			}
 			db.Agenda.Add(agenda);
 			db.SaveChanges();
 			return Ok("Agendamento realizado com sucesso!");
 		}
 
-		[HttpPut("{id}")]
-		public async Task<IActionResult> AlterarAgenda(int id, DtoAgenda dtoAgenda)
+		[HttpGet]
+		public ActionResult<IEnumerable<DtoAgenda>> Listar()
 		{
-			if(id != dtoAgenda.Id)
-			{
-				return BadRequest("A agenda não existe");
-			}
-
-			db.Entry(dtoAgenda).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-			
-			try
-			{
-				await db.SaveChangesAsync();
-			}
-			catch(DbUpdateConcurrencyException) 
-			{
-
-				if (!AgendaExists(id)) 
-				{
-					return NotFound("A agenda não existe");
-				}
-				else
-				{
-					return StatusCode(500, "Erro de concorrência ao atualizar a agenda");
-				}
-			}
-			return NoContent();
+			var agendas = db.Agenda.ToList();
+			var dtos = agendas.Select(agenda => DtoAgenda.FromModel(agenda)).ToList();
+			return Ok(dtos);
 		}
-		private bool AgendaExists(int id)
+
+		[HttpPut("{id}")]
+		public ActionResult<DtoAgenda> Editar(int id, [FromBody] DtoAgenda alteraAgenda)
 		{
-			// Verifique se a agenda com o ID fornecido existe no banco de dados.
-			// Implemente a lógica de verificação de existência conforme necessário.
-			return db.Agenda.Any(e => e.Id == id);
+			var agenda = db.Agenda.FirstOrDefault(a => a.Id == id);
+			if (agenda == null)
+			{
+				BadRequest("Agenda não encontrada");
+			}
+			agenda = alteraAgenda.ToModel(db);
+			db.SaveChanges();
+			return Ok("Alteração realizada com sucesso!");
+		}
+
+		[HttpDelete("{id}")]
+		public ActionResult<DtoAgenda> Delete(int id) 
+		{
+			var agenda = db.Agenda.FirstOrDefault(a => a.Id == id);
+			if (agenda == null)
+			{
+				return BadRequest("Agenda não encontrada");
+			}
+
+			db.Agenda.Remove(agenda); 
+			db.SaveChanges();
+
+			return Ok("Agenda deletada!");
 		}
 	}
 }

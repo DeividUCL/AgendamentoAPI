@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agendamentos.Migrations
 {
     [DbContext(typeof(AgendamentoContext))]
-    [Migration("20240116122252_TabelaAgendamento")]
+    [Migration("20240118012625_TabelaAgendamento")]
     partial class TabelaAgendamento
     {
         /// <inheritdoc />

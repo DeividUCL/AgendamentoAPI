@@ -33,7 +33,7 @@ namespace Agendamentos.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<DtoUsuario>> ExibirUsuarios()
+		public ActionResult<DtoUsuario> ExibirUsuarios()
 		{
 			try
 			{
@@ -92,7 +92,8 @@ namespace Agendamentos.Controllers
 			return Ok("Usuário alterado com sucesso");
 		}
 
-		[HttpPatch("{id}")]// não está funcionando -- VERIFICAR
+		[HttpPatch]// não está funcionando -- VERIFICAR
+		[Route("{id}")]
 		public IActionResult AlterarDado(int id, [FromBody] JsonPatchDocument<Usuario> alterarDado)
 		{
 			var usuarioExistente = db.Usuario.FirstOrDefault(u => u.Id == id);
