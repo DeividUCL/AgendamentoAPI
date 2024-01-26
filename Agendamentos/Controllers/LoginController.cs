@@ -11,6 +11,7 @@ namespace Agendamentos.Controllers;
 public class LoginController : ControllerBase
 {
 	private AgendamentoContext db;
+	private string login;
     public LoginController(AgendamentoContext db)
     {
         this.db = db;
@@ -20,18 +21,17 @@ public class LoginController : ControllerBase
 	[AllowAnonymous]
 	public async Task<ActionResult<dynamic>> Autenticacao([FromBody] DtoLogin usuario)
 	{
-		var user = db.Usuario.FirstOrDefault(u => u.Username == usuario.Username && u.Senha == usuario.Senha);
-
+		var user =  db.Usuario.FirstOrDefault(u => u.Username == usuario.Username && u.Senha == usuario.Senha);
 		if (user == null)
 		{
 			return NotFound(new { message = "Usuário ou senha inválidos" });
 		}
 
-		var token = TokenService.GerarToken(user);
-		user.Senha = "";
+		var token = TokenService.GerarToken(usuario);
+		user.Senha = "ADSJADLIAHJSDOASHIUhaiuhdisuahDY8ASD08E9asd";
 		return new
 		{
-			user = user,
+			login = $"Bem-vindo {user.Nome}",
 			token = token,
 		};
 	}
