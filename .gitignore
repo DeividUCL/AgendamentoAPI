@@ -4,6 +4,17 @@ project.lock.json
 .DS_Store
 *.pyc
 nupkg/
+# Verificar se tem algum problema ignorar estes arquivos
+**/project.nuget.cache
+**/Agendamentos.csproj.AssemblyReference.cache
+**/Agendamentos.GeneratedMSBuildEditorConfig.editorconfig
+**/Agendamentos.AssemblyInfoInputs.cache
+**/Agendamentos.AssemblyInfo.cs
+**/project.assets.json
+**/project.nuget.cache
+**/Agendamentos.csproj.nuget.g.props
+**/Agendamentos.csproj.nuget.dgspec.json
+**/Agendamentos.AssemblyInfoInputs.cache
 
 # Visual Studio Code
 .vscode/
