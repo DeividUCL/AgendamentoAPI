@@ -1,5 +1,5 @@
 ﻿using Agendamentos.Contexts;
-using Agendamentos.Data;
+using Agendamentos.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamentos.Controllers;
@@ -18,12 +18,24 @@ public class ConvidadoController : ControllerBase
 	}
 
 	[HttpPost]
-	public IActionResult CadastrarConvidado([FromBody] Convidado convidado)
+	public IActionResult CadastrarConvidado([FromBody]  DtoConvidado cv)
 	{
+		var convidado = cv.ToModel(db);
+		bool emailExiste = db.Convidado.Any(c => c.Email == cv.Email);
+
+		if (!ModelState.IsValid) 
+		{
+			return BadRequest(ModelState);
+		}
+
+		if(emailExiste)
+		{
+			return BadRequest("O E-mail informado já está cadastrado.");
+		}
 
 		db.Convidado.Add(convidado);
 		db.SaveChanges();
-		return Ok();
+		return Ok("Convidado cadastrado com sucesso!");
 	}
 
 }

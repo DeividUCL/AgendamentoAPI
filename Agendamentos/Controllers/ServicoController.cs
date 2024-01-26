@@ -1,6 +1,7 @@
 ﻿using Agendamentos.Contexts;
 using Agendamentos.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 
 namespace Agendamentos.Controllers
 {
@@ -25,6 +26,28 @@ namespace Agendamentos.Controllers
 			db.Servico.Add(servico);
 			db.SaveChanges();
 			return Ok();
+		}
+
+		[HttpGet]
+		public ActionResult<IEnumerable<DtoServico>> ExibirServicos()
+		{
+			var servicos = db.Servico.ToList();
+			var dtos = servicos.Select(agenda => DtoServico.FromModel(agenda)).ToList();
+			return Ok(dtos);
+		}
+
+		[HttpPut("{id}")]
+		public ActionResult<DtoServico> Alterar(int id, [FromBody]DtoServico service)
+		{
+			var servico = db.Servico.FirstOrDefault(a => a.Id == id);
+			if(servico == null)
+			{
+				return BadRequest("Servico não encontrado");
+			}
+
+			servico = service.ToModel(db);
+			db.SaveChanges();
+			return Ok("Alteração realizada com sucesso");
 		}
 	}
 }

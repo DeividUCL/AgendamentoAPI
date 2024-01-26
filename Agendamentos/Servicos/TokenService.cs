@@ -31,9 +31,4 @@ public static class TokenService
         var token = tokenManipulador.CreateToken(tokenDescriptor);
         return tokenManipulador.WriteToken(token);
     }
-
-	internal static object GerarToken(Usuario user)
-	{
-		throw new NotImplementedException();
-	}
 }
