@@ -1,24 +1,19 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using Agendamentos.Data;
 
-[DataContract]
+[Table("Agenda")]
 public partial class Agenda
 {
-	[DataMember]
-     public int Id { get; set; }
-	[DataMember]
+    public int Id { get; set; }
+	[Required(ErrorMessage = "É nessário preencher o campo 'Data'")]
 	public DateTime Data { get; set; }
-	[DataMember]
-	public DateTime Hora { get; set; }
-	[DataMember]
+	[Required(ErrorMessage = "É necessário informar o 'Usuario'")]
 	public int UsuarioId { get; set; }
-    public virtual Usuario Usuario { get; set; }
-	[DataMember]
 	public int ConvidadoId { get; set; }
-    public virtual Convidado Convidado { get; set; }
-	[DataMember]
+	[Required(ErrorMessage = "É necessário informar o 'Servico'")]
 	public int ServicoId { get; set; }
-    public virtual Servico Servico { get; set; }
 
 }
 

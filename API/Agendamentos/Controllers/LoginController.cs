@@ -11,7 +11,6 @@ namespace Agendamentos.Controllers;
 public class LoginController : ControllerBase
 {
 	private AgendamentoContext db;
-	private string login;
     public LoginController(AgendamentoContext db)
     {
         this.db = db;

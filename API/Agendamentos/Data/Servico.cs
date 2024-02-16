@@ -1,19 +1,18 @@
-﻿using System.Runtime.Serialization;
-using System.Runtime.Serialization.DataContracts;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Agendamentos.Data;
 
-[DataContract]
-public partial class Servico
+[Table("Servico")]
+public class Servico
 {
-    [DataMember]
     public int Id { get; set; }
-    [DataMember]
-    public string Nome { get; set; }
-	[DataMember]
-	public string Descricao { get; set; }
-	[DataMember]
+	[Required(ErrorMessage = "Informe o 'nome' do serviço")]
+	[StringLength(50)]
+    public string Nome { get; set; } = string.Empty;
+	public string Descricao { get; set; } = string.Empty;
+	[Required(ErrorMessage = "Informe o 'preço' do serviço")]
 	public decimal Preco { get; set; }
-	[DataMember]
+	[MinLength(10)]
 	public int Duracao { get; set; }
 }

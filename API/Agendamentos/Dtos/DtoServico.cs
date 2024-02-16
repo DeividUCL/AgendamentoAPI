@@ -9,12 +9,9 @@ namespace Agendamentos.Dtos
 	{
 		
 		public int Id { get; set; }
-		[Required(ErrorMessage = "O Campo 'Nome' é obrigatório!")]
-		public string Nome { get; set; }
-		public string Descricao { get; set; }
-		[Required(ErrorMessage = "O Campo 'Preco' é obrigatório!")]
+		public string Nome { get; set; } = string.Empty;
+		public string Descricao { get; set; } = string.Empty;
 		public decimal Preco { get; set; }
-		[Required(ErrorMessage = "O Campo 'Duracao' é obrigatório!")]
 		public int Duracao { get; set; }
 
 		public Servico ToModel(AgendamentoContext db)

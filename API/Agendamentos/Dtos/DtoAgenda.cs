@@ -1,5 +1,4 @@
 ﻿using Agendamentos.Contexts;
-using Agendamentos.Data;
 namespace Agendamentos.Dtos;
 public class DtoAgenda
 {
@@ -19,7 +18,6 @@ public class DtoAgenda
 
         agenda.Id = this.Id;
         agenda.Data = this.Data;
-        agenda.Hora = this.Hora;
         agenda.UsuarioId = this.UsuarioId;
         agenda.ConvidadoId = this.ConvidadoId;
         agenda.ServicoId = this.ServicoId;
@@ -33,7 +31,6 @@ public class DtoAgenda
         {
             Id = agenda.Id,
             Data = agenda.Data,
-            Hora = agenda.Hora,
             UsuarioId = agenda.UsuarioId,
             ConvidadoId = agenda.ConvidadoId,
             ServicoId = agenda.ServicoId

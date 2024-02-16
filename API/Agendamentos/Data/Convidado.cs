@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Agendamentos.Data;
 
-[DataContract]
-public partial class Convidado
+[Table("Convidado")]
+public class Convidado
 {
-    [DataMember]
     public int Id { get; set; }
-    [DataMember]
-    public string Nome { get; set; }
-    [DataMember]
-    public string? Email { get; set; }
-    [DataMember]
-    public string? Telefone { get; set; }
+    [Required(ErrorMessage = "É necessário informar o campo 'nome'")]
+	[StringLength(100)]
+	public string Nome { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+	[Required(ErrorMessage = "É necessário informar o campo 'telefone'")]
+	[StringLength(12)]
+	public string Telefone { get; set; } = string.Empty;
 }

@@ -1,26 +1,28 @@
 ﻿using Agendamentos.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Agendamentos.Data;
 
-[DataContract]
-public partial class Usuario
+[Table("Usuario")]
+public class Usuario
 {
-	[DataMember]
 	public int Id { get; set; }
-	[DataMember]
-	public string Username { get; set; }
-	[DataMember]
-	public string Senha { get; set; }
-	[DataMember]
+	[Required]
+	[StringLength(50)]
+	public string Username { get; set; } = string.Empty;
+	[Required]
+	[StringLength(50)]
+	public string Senha { get; set; } = string.Empty;
+	[Required]
 	public TTipoUsuario Tipo { get; set; }
-	[DataMember]
-	public string Nome { get; set; }
-	[DataMember]
-	public string Email { get; set; }
-	[DataMember]
-	public string Telefone { get; set; }
-	[DataMember]
+	[Required]
+	[StringLength(100)]
+	public string Nome { get; set; } = string.Empty;
+	[Required]
+	[StringLength(100)]
+	public string Email { get; set; } = string.Empty;
+	public string Telefone { get; set; } = string.Empty;
+	[Required]
 	public DateTime DataNascimento { get; set; }
 }
