@@ -5,6 +5,6 @@
     "types": [
       "@nuxt/types",
       "@nuxt/content"
-    ],
+    ]
   }
 }

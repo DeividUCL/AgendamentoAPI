@@ -1,20 +1,72 @@
 import type { Config } from 'tailwindcss'
+import { excludeColors, generateSafelist, customSafelistExtractor } from './colors';
+
+console.log('customSafelistExtractor importado:', customSafelistExtractor);
+
+const myColors = {
+  transparent: 'transparent',
+  primary: {
+    DEFAULT: '#ef4444',
+    50: '#fef2f2',
+    100: '#fee2e2',
+    200: '#fecaca',
+    300: '#fca5a5',
+    400: '#f87171',
+    500: '#ef4444',
+    600: '#dc2626',
+    700: '#b91c1c',
+    800: '#991b1b',
+    900: '#7f1d1d',
+  },
+  gray: {
+    50: '#f8fafc',
+    100: '#f1f5f9',
+    200: '#e2e8f0',
+    300: '#cbd5e1',
+    400: '#94a3b8',
+    500: '#64748b',
+    600: '#475569',
+    700: '#334155',
+    800: '#1e293b',
+    900: '#0f172a',
+  },
+  red: {
+    50: '#FDEDED',
+    100: '#FCDADA',
+    200: '#F9B5B5',
+    300: '#F58F8F',
+    400: '#F26A6A',
+    500: '#EF4444',
+    600: '#E71414',
+    700: '#B30F0F',
+    800: '#800B0B',
+    900: '#4C0707',
+    950: '#320404'
+  },
+};
+const myGlobalColors = 'primary';
+const excluirCores = excludeColors(myColors);
+
+const coresEmUso = excluirCores.reduce((obj: Record<string, any>, color) => {
+  obj[color] = myColors[color as keyof typeof myColors];
+  return obj;
+}, {})
 
 export default <Partial<Config>>{
   content: {
     files: [
-      './src/**/*.html',
-      './src/**/*.vue',
-      './src/**/*.jsx',
+      './src/**/*.{js,ts,jsx,tsx,vue}',
     ],
-    // safelist: [
-    //   /text-red-400/,
-    //   /text-red-500/,
-    //   /ring-red-400/,
-    //   /ring-red-500/,
-    //   /bg-red-400/,
-    //   /bg-red-500/,
-    // ],
+    safelist: generateSafelist(Object.keys(myColors), myGlobalColors),
+    // {
+    //   standard: generateSafelist(Object.keys(myColors), myGlobalColors),
+    //   extractors: [
+    //     {
+    //       extractor: customSafelistExtractor,
+    //       extensions: ['js', 'ts', 'jsx', 'tsx'],
+    //     },
+    //   ],
+    // },
   },
   theme: {
     screens: {
@@ -24,37 +76,7 @@ export default <Partial<Config>>{
       xl: '1440px',
       // '2xl': '1536px',
     },
-    colors: {
-      transparent: 'transparent',
-      green: {
-        DEFAULT: '#22c554',
-        50: '#f0fdf4',
-        100: '#dcfce6',
-        200: '#bbf7cd',
-        300: '#86efa6',
-        400: '#4ade78',
-        500: '#22c554',
-        600: '#16a341',
-        700: '#158036',
-        800: '#16652e',
-        900: '#145327',
-        950: '#052e12',
-      },
-      gray: {
-        DEFAULT: '#859bab',
-        50: '#f9fafb',
-        100: '#eceff2',
-        200: '#d5dde2',
-        300: '#b0bfc9',
-        400: '#859bab',
-        500: '#668091',
-        600: '#516778',
-        700: '#425462',
-        800: '#394753',
-        900: '#333e47',
-        950: '#22292f',
-      },
-    },
+    colors: coresEmUso,
     extend: {
       spacing: {
         '128': '32rem',
