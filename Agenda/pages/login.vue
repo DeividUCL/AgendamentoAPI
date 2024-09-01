@@ -1,55 +1,85 @@
 <script setup lang="ts">
-import type { FormError } from '#ui/types'
+import { loginUse } from '~/middleware/authentication';
+import { useUserStore } from '~/stores/user';
 
-const fields = [{
-    name: 'email',
-    type: 'text',
-    label: 'Email',
-    placeholder: 'Enter your email'
-}, {
-    name: 'password',
-    label: 'Password',
-    type: 'password',
-    placeholder: 'Enter your password'
-}]
+const userStore = useUserStore();
+const username = ref('')
+const senha = ref('')
+const errorMessage = ref('');
 
-const validate = (state: any) => {
-    const errors: FormError[] = []
-    if (!state.email) errors.push({ path: 'email', message: 'Email is required' })
-    if (!state.password) errors.push({ path: 'password', message: 'Password is required' })
-    return errors
-}
 
-const providers = [{
-    label: 'Continue with GitHub',
-    icon: 'i-simple-icons-github',
-    color: 'white' as const,
-    click: () => {
-        console.log('Redirect to GitHub')
+const handleSubmit = async () => {
+    console.log('Tentando fazer login com log handleSubmit:', { username: username.value, senha: senha.value });
+    try {
+        await loginUse(
+            username.value,
+            senha.value
+        );
+        errorMessage.value = '';
+        console.log('Login bem-sucedido, redirecionando...');
+    } catch (error) {
+        console.error('Erro ao tentar fazer login:', error);
+        errorMessage.value = 'Erro ao acessar. Verifique o login e senha.';
     }
-}]
-
-function onSubmit(data: any) {
-    console.log('Submitted', data)
 }
+
+const logout = () => {
+    userStore.logout();
+};
+
+const conectado = computed(() => userStore.isAuthenticated);
 </script>
 
 <template>
-    <UCard class="max-w-sm w-full">
-        <UAuthForm :fields="fields" :validate="validate" :providers="providers" title="Welcome back!" align="top"
-            icon="i-heroicons-lock-closed" :ui="{ base: 'text-center', footer: 'text-center' }" @submit="onSubmit">
-            <template #description>
-                Don't have an account? <NuxtLink to="/" class="text-primary font-medium">Sign up</NuxtLink>.
+    <div class="login">
+        <Card>
+            <template #header>
+                <div class="flex justify-content-center align-items-center">
+                    <img class="p-4" alt="login header" src="../public/fingerprint-identity.jpg" />
+                </div>
             </template>
-
-            <template #password-hint>
-                <NuxtLink to="/" class="text-primary font-medium">Forgot password?</NuxtLink>
+            <template #title>Acesse a Agenda</template>
+            <template #subtitle>Barbearia Alfa</template>
+            <template #content>
+                <p class="m-0">
+                <div>
+                    <form v-if="!conectado" @submit.prevent="handleSubmit">
+                        <InputText v-model="username" type="text" placeholder="Login" required />
+                        <br /><br />
+                        <Password v-model="senha" promptLabel="insira a senha." type="password" placeholder="Senha"
+                            required toggleMask />
+                        <br /><br />
+                        <Button type="submit">Entrar</Button>
+                    </form>
+                    <div v-else>
+                        <p>Bem-vindo, {{ userStore.usuario?.nome }}!</p>
+                        <Button @click="logout">Sair</Button>
+                    </div>
+                    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+                </div>
+                </p>
             </template>
-
             <template #footer>
-                By signing in, you agree to our <NuxtLink to="/" class="text-primary font-medium">Terms of Service
-                </NuxtLink>.
+                <div class="flex justify-content-center gap-3">
+                    <NuxtLink class="no-underline" to="/cadastro">
+                        Cadastre-se
+                        <Avatar icon="pi pi-user" size="normal" />
+                    </NuxtLink>
+                </div>
             </template>
-        </UAuthForm>
-    </UCard>
+        </Card>
+    </div>
 </template>
+
+<style scoped>
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px);
+}
+
+.error {
+    color: red;
+}
+</style>

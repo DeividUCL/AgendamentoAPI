@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col justify-between h-screen">
-    <AppHeader />
-    <NuxtPage />
-    <AppFooter />
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

@@ -1,26 +1,22 @@
-<script setup>
-const links = [{
-    label: 'Profile',
-    avatar: {
-        src: 'https://avatars.githubusercontent.com/u/739984?v=4'
-    },
-    badge: 100
-}, {
-    label: 'Installation',
-    icon: 'i-heroicons-home',
-    to: '/getting-started/installation'
-}, {
-    label: 'Vertical Navigation',
-    icon: 'i-heroicons-chart-bar',
-    to: '/navigation/vertical-navigation'
-}, {
-    label: 'Command Palette',
-    icon: 'i-heroicons-command-line',
-    to: '/navigation/command-palette'
-}]
+<script setup lang="ts">
+import { useRouter } from '#app';
+import { useUserStore } from '~/stores/user';
+
+const router = useRouter();
+const userStore = useUserStore();
+
+onMounted(async () => {
+  if (!userStore.isAuthenticated || !userStore.usuario) {
+    router.push('/login');
+  } else {
+    console.log('Usuário:', userStore.usuario?.nome);
+  }
+});
 </script>
- 
+
 <template>
-    <UVerticalNavigation :links="links" class="sm:m-auto sm:w-full sm:max-w-sm" />
+  <h2>Perfil</h2>
+  <div v-if="userStore.usuario">
+    <h1>Bem-vindo, {{ userStore.usuario?.nome }}!</h1>
+  </div>
 </template>
- 

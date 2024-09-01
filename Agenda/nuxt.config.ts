@@ -1,16 +1,32 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  extends: ['@nuxt/ui-pro'],
-  modules: [
-    '@nuxt/ui',
-    '@nuxt/content',
-    ['nuxt-vue3-google-signin', {
-      clientId: 'CLIENT ID OBTAINED FROM GOOGLE API CONSOLE',
-    }],
+  css: [
+    'primeflex/primeflex.css',
+    'primevue/resources/themes/lara-dark-purple/theme.css',
+    'primevue/resources/primevue.min.css',
+    'primevue/resources/primevue.css',
+    'primeicons/primeicons.css',
   ],
+  build: {
+    transpile: ['primevue']
+  },
+  modules: [
+    '@nuxt/content',
+    '@primevue/nuxt-module',
+    '@pinia/nuxt'
+  ],
+
+  pinia: {
+    storesDirs: ['~/stores/**']
+  },
+
+  primevue: {
+    usePrimeVue: true
+  },
+
   content: {
     locales: ['pt-br'],
-  }
+  },
+
 })
